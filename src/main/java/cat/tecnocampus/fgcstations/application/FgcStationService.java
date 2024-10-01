@@ -6,8 +6,11 @@ import cat.tecnocampus.fgcstations.application.exception.StationDoesNotExistsExc
 import cat.tecnocampus.fgcstations.application.mapper.MapperHelper;
 import cat.tecnocampus.fgcstations.domain.Station;
 import cat.tecnocampus.fgcstations.persistence.StationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import javax.lang.model.element.Name;
 import java.util.List;
 
 @Service
@@ -20,24 +23,27 @@ public class FgcStationService {
 
     public List<StationDTO> getStationsDTO() {
         //TODO 1: get all stations (see the returned type)
-        return null;
+        // 1. Obtener todas las entidades Station desde el repositorio
+        return stationRepository.findAllDTO();
     }
 
     public List<Station> getStationsDomain() {
         //TODO 2: get all stations (see you return a domain Station). Actually you don't need to leave this file
         // in order to complete this exercise
-        return null;
+        return stationRepository.findAll();
     }
 
     public Station getStation(String name) {
         // TODO 3: get a station by name (see the returned type). If the station does not exist, throw a StationDoesNotExistsException
         //  you won't need to write any sql (jpql) query
-        return null;
+        return stationRepository.findByName(name)
+                .orElseThrow(() -> new StationDoesNotExistsException("Station with name " + name + " does not exist"));
     }
 
     public StationDTO getStationDTO(String name) {
         // TODO 4: get a station by name (see the returned type). If the station does not exist, throw a StationDoesNotExistsException
-        return null;
+        return stationRepository.findByNameDTO(name)
+                .orElseThrow(() -> new StationDoesNotExistsException(name));
     }
 
     public List<StationTopFavoriteJourney> getStationsOrderedByFavoriteJourneysAsEitherOriginOrDestination() {

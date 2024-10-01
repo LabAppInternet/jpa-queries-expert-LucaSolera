@@ -10,4 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StationRepository extends JpaRepository<Station, String> {
+    @Query("SELECT StationDTO(s.name,s.longitud,s.latitud) FROM Station s")
+    List<StationDTO> findAllDTO();
+
+    Optional<Station> findByName(String name);
+
+    @Query("SELECT StationDTO(s.name,s.longitud,s.latitud) FROM Station s WHERE s.name = :name")
+    Optional<StationDTO> findByNameDTO(String name);
 }

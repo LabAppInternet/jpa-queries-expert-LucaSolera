@@ -1,7 +1,7 @@
 package cat.tecnocampus.fgcstations.api;
 
 import cat.tecnocampus.fgcstations.application.DTOs.JourneyDTO;
-import cat.tecnocampus.fgcstations.application.FgcJouneyService;
+import cat.tecnocampus.fgcstations.application.FgcJourneyService;
 import cat.tecnocampus.fgcstations.domain.Journey;
 import cat.tecnocampus.fgcstations.domain.JourneyId;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +14,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/journeys")
 public class JourneyRestController {
-    private final FgcJouneyService fgcJouneyService;
+    private final FgcJourneyService fgcJouneyService;
 
-    public JourneyRestController(FgcJouneyService fgcJouneyService) {
+    public JourneyRestController(FgcJourneyService fgcJouneyService) {
         this.fgcJouneyService = fgcJouneyService;
     }
 

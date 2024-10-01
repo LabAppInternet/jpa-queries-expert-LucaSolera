@@ -40,6 +40,8 @@ public class Journey {
         return destination;
     }
 
+    public JourneyId getId() {return id;}
+
     @Override
     public String toString() {
         return "Journey{" +
@@ -61,4 +63,5 @@ public class Journey {
     public int hashCode() {
         return id.hashCode();
     }
+
 }
